@@ -31,6 +31,7 @@ func (s *Server) ListenAndServe() error {
 	// setup supported routes
 	r.Get("/", handlers.Root)
 	r.Get("/health", handlers.Health)
+	r.Post("/orders", handlers.ReceiveOrder)
 
 	address := fmt.Sprintf(":%d", s.Port)
 	log.WithField("address", address).Info("server starting")

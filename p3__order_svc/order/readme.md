@@ -24,7 +24,7 @@ Using the classic way, you can start the _cmd_ using `go run order/main.go`.
 
 ## Testing the Service
 
-1. Start a consumer for the Topic
+1. Start a consumer for the topic:
 
    ```shell
    $> $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic OrderReceived --from-beginning
@@ -36,7 +36,7 @@ Using the classic way, you can start the _cmd_ using `go run order/main.go`.
    $> curl -v -H "Content-Type: application/json" -d '{"products":[{"productCode":"12345","quantity":2}],"customer":{"firstName":"Tom","lastName":"Hardy","emailAddress":"tom.hardy@email.com","shippingAddress":{"line1":"123 Anywhere St","city":"Anytown","state":"AL","postalCode":"12345"}}}' http://localhost:8080/orders
    ```
 
-1. Verify an event reached the Topic. You should see a response in the consumer output like this:
+1. Verify that an event reached the topic. In the previously started consumer output, you should see a response like this:
    ```json
    {
      "EventBase": {
