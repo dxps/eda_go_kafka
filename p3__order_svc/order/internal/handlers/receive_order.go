@@ -16,10 +16,18 @@ import (
 )
 
 // ReceiveOrder handler will accept an order, validate the payload and publish an OrderReceived event to Kafka.
-// returns a HTTP 201 status code indicating an order was created
+// returns a HTTP 201 status code indicating an order was created.
 //
-// Example cURL payload (localhost)
-// $ curl -v -H "Content-Type: application/json" -d '{"id":"6e042f29-350b-4d51-8849-5e36456dfa48","products":[{"productCode":"12345","quantity":2}],"customer":{"firstName":"Tom","lastName":"Hardy","emailAddress":"tom.hardy@email.com","shippingAddress":{"line1":"123 Anywhere St","city":"Anytown","state":"AL","postalCode":"12345"}}}' http://localhost:8080/orders
+// Example cURL payload:
+// $ curl -v -H "Content-Type: application/json" \
+//   -d '{
+//         "id":"6e042f29-350b-4d51-8849-5e36456dfa48",
+//         "products":[ { "productCode":"12345", "quantity":2 } ],
+//         "customer":{
+//              "firstName":"Tom", "lastName":"Hardy", "emailAddress":"tom.hardy@email.com",
+//              "shippingAddress":{ "line1":"123 Anywhere St", "city":"Anytown", "state":"AL", "postalCode":"12345" }
+//          }
+//        }' http://localhost:8080/orders
 func ReceiveOrder(w http.ResponseWriter, r *http.Request) {
 
 	var o models.Order

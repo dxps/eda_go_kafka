@@ -22,8 +22,7 @@ func PublishEvent(event events.Event, topic string) error {
 		return err
 	}
 
-	// Optional delivery channel, if not specified the Producer object's
-	// .Events channel is used.
+	// Optional delivery channel, if not specified the Producer object's .Events channel is used.
 	deliveryChan := make(chan kafka.Event)
 
 	var value []byte
@@ -34,6 +33,9 @@ func PublishEvent(event events.Event, topic string) error {
 		TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 		Value:          value,
 	}, deliveryChan)
+	if err != nil {
+		return err
+	}
 
 	e := <-deliveryChan
 	m := e.(*kafka.Message)

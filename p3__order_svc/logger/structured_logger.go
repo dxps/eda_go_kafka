@@ -51,7 +51,7 @@ func (l *StructuredLogger) NewLogEntry(r *http.Request) middleware.LogEntry {
 
 	entry.Logger = entry.Logger.WithFields(logFields)
 
-	entry.Logger.Debugln("request started")
+	entry.Logger.Debugln("request received")
 
 	return entry
 }

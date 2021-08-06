@@ -31,7 +31,8 @@ func main() {
 		sig := <-sigs
 		log.WithField("uptime", time.Since(startTime).String()).
 			WithField("signal", sig.String()).
-			Error("interrupt signal detected")
+			Info("Shutdown signal detected")
+
 		os.Exit(0)
 	}()
 
